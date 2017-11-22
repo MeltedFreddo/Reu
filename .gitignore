@@ -2,3 +2,7 @@
 Library/
 ProjectSettings/
 UnityPackageManager/
+Temp/
+Assembly-CSharp.csproj
+Reu.sln
+obj/
