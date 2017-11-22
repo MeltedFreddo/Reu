@@ -7,6 +7,8 @@ namespace Data
 {
     public class GameState
     {
+        public DateTime StarDate { get; set; }
+
         public double Money { get; set; }
         public double Energon { get; set; }
         public double Detoxin { get; set; }
@@ -17,6 +19,8 @@ namespace Data
 
         public GameState()
         {
+            StarDate = new DateTime(2349, 1, 1);
+
             Money = 0;
             Energon = 0;
             Detoxin = 0;

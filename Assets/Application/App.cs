@@ -20,6 +20,7 @@ public class App : MonoBehaviour {
 
 		Singleton = this;
 
+        GameState = new Data.GameState();
 		Model = new Data.Model ();
 
 		Time.timeScale = 1;
@@ -36,7 +37,7 @@ public class App : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {	
-		InvokeRepeating ("ProcessDay", 0, 1);
+		InvokeRepeating ("IncrementStarDate", 0, 1);
 	}
 	
 	// Update is called once per frame
@@ -59,8 +60,21 @@ public class App : MonoBehaviour {
 		LoadLevel( SceneNames.MainMenu );
 	}
 
+    private void IncrementStarDate()
+    {
+        var previousStarDate = GameState.StarDate;
+        GameState.StarDate = GameState.StarDate.AddHours(1);
+        if (GameState.StarDate.Day != previousStarDate.Day)
+            ProcessDay();
+    }
 
 	private void ProcessDay(){
-		var thing = "";
-	}
+        GameState.Money++;
+        GameState.Energon++;
+        GameState.Detoxin++;
+        GameState.Kremir++;
+        GameState.Lepitium++;
+        GameState.Raenium++;
+        GameState.Texon++;
+    }
 }

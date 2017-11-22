@@ -29,11 +29,10 @@ public class SystemViewController : AppMonoBehaviour
             float radius = i + 1.5f;
             float angle = i * Mathf.PI * 2 / 5;
             Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
-            var thing = PlanetPrefabs.ElementAt(0);
 
             var planetPrefab = PlanetPrefabs.Single(x => x.name == thisPlanet.SpriteName);
             thisPlanet.GameObject = Instantiate(planetPrefab, pos, planetPrefab.transform.rotation);
-			var collider = thisPlanet.GameObject.AddComponent<SphereCollider> ();
+			thisPlanet.GameObject.AddComponent<SphereCollider> ();
 
             planets.Add(thisPlanet);
         }        
