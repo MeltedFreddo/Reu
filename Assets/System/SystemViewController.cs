@@ -5,8 +5,8 @@ using UnityEngine;
 public class SystemViewController : MonoBehaviour
 {
 
-    public GameObject theStar;
-    public ICollection<Data.Planet> planets;
+    private GameObject theStar;
+    private ICollection<Data.Planet> planets;
 
     public GameObject StarPrefab;
     public List<GameObject> PlanetPrefabs;
@@ -18,7 +18,8 @@ public class SystemViewController : MonoBehaviour
 
         //TODO load star and planets from game state
         theStar = Instantiate(StarPrefab);
-        
+		theStar.AddComponent<SphereCollider> ();
+
         planets = new List<Data.Planet>();
 
         for (var i = 0; i < model.Planets.Count(); i++)
@@ -32,7 +33,8 @@ public class SystemViewController : MonoBehaviour
 
             var planetPrefab = PlanetPrefabs.Single(x => x.name == thisPlanet.SpriteName);
             thisPlanet.GameObject = Instantiate(planetPrefab, pos, planetPrefab.transform.rotation);
-                        
+			var collider = thisPlanet.GameObject.AddComponent<SphereCollider> ();
+
             planets.Add(thisPlanet);
         }        
     }

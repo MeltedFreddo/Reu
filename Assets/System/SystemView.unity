@@ -212,10 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c622a5bd17358ed4582c808e38dddc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theStar: {fileID: 0}
   StarPrefab: {fileID: 1976418240132098, guid: beca01e116d0c6c4d8aa33ba8ce29873, type: 2}
-  PlanetPrefab: {fileID: 1232416865221048, guid: 87a95fa3c3cb8ec45952d820eb1214b7,
-    type: 2}
   PlanetPrefabs:
   - {fileID: 1232416865221048, guid: 87a95fa3c3cb8ec45952d820eb1214b7, type: 2}
   - {fileID: 1272398095948814, guid: 0c6ea812460e53e4995ffb745bd6c1c1, type: 2}
