@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SystemViewController : MonoBehaviour
 {
+	public App AppPrefab;
 
     private GameObject theStar;
     private ICollection<Data.Planet> planets;
