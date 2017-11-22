@@ -22,8 +22,10 @@ public class App : MonoBehaviour {
 
 		Model = new Data.Model ();
 
+		Time.timeScale = 1;
+
 		// Are we in the Application Scene?
-		if ( Application.loadedLevelName == "Application" )
+		if ( SceneManager.GetActiveScene().name == "Application" )
 		{
 			// Make sure this object persists between scene loads.
 			DontDestroyOnLoad(gameObject);
@@ -33,7 +35,8 @@ public class App : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {		
+	void Start () {	
+		InvokeRepeating ("ProcessDay", 0, 1);
 	}
 	
 	// Update is called once per frame
@@ -54,5 +57,10 @@ public class App : MonoBehaviour {
 	{
 		Debug.Log("App: Loading MainMenu.");
 		LoadLevel( SceneNames.MainMenu );
+	}
+
+
+	private void ProcessDay(){
+		var thing = "";
 	}
 }
