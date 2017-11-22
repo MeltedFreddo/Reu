@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Code.BaseClasses;
 
-public class SystemViewController : MonoBehaviour
+public class SystemViewController : AppMonoBehaviour
 {
-	public App AppPrefab;
-
-    private GameObject theStar;
+	private GameObject theStar;
     private ICollection<Data.Planet> planets;
 
     public GameObject StarPrefab;
@@ -15,7 +14,7 @@ public class SystemViewController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        var model = new Data.Model();
+		var model = App.Instance.Model;
 
         //TODO load star and planets from game state
         theStar = Instantiate(StarPrefab);

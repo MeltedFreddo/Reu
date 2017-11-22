@@ -11,6 +11,7 @@ public class App : MonoBehaviour {
 
 	private string CurrentSceneName;
 	public Data.GameState GameState;
+	public Data.Model Model;
 
 	void Awake(){
 		if (Singleton != null) {	
@@ -18,6 +19,8 @@ public class App : MonoBehaviour {
 		}
 
 		Singleton = this;
+
+		Model = new Data.Model ();
 
 		// Are we in the Application Scene?
 		if ( Application.loadedLevelName == "Application" )
