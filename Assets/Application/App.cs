@@ -45,11 +45,11 @@ public class App : MonoBehaviour {
 		
 	}
 
-	public void LoadLevel( string level )
+	public void LoadScene( string sceneName )
 	{
-		Debug.Log("App: Loading Level, " + level);
+		Debug.Log("App: Loading Scene, " + sceneName);
 
-		CurrentSceneName = level;
+		CurrentSceneName = sceneName;
 
 		SceneManager.LoadSceneAsync(CurrentSceneName);
 	}
@@ -57,8 +57,15 @@ public class App : MonoBehaviour {
 	public void LoadMainMenu()
 	{
 		Debug.Log("App: Loading MainMenu.");
-		LoadLevel( SceneNames.MainMenu );
+		LoadScene( SceneNames.MainMenu );
 	}
+
+    public void Quit()
+    {
+        Debug.Log("App: Terminating.");
+
+        Application.Quit();
+    }
 
     private void IncrementStarDate()
     {
