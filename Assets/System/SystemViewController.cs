@@ -56,16 +56,20 @@ public class SystemViewController : AppMonoBehaviour
             var newScale = 0f;
             if (distanceFromZPlane != 0)
             {
-                newScale = planetScale + ConvertDistanceToScale(5, distanceFromZPlane);
+                newScale = planetScale + ConvertDistanceToScale(5, distanceFromZPlane, planetScale);
             }
             planet.GameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
 
         }   
     }
 
-    private float ConvertDistanceToScale(float maxDistance, float actualDistance)
+	private float ConvertDistanceToScale(float maxDistance, float actualDistance, float planetScale)
     {
-        return (((actualDistance - maxDistance * -1f) * (0.05f - -0.05f)) / (maxDistance - maxDistance * -1f)) + -0.05f;
+		var minDistance = maxDistance * -1;
+		//the size of the planet scale can vary by half its scale so for a 0.1 scale sprite it will grow and shrink 0.05 either site
+		var maxScale = planetScale / 2;
+		var minScale = maxScale * -1;
+		return (((actualDistance - minDistance) * (maxScale - minScale)) / (maxDistance - minDistance)) + minScale;
     }
 
 }

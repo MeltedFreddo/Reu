@@ -23,7 +23,7 @@ public class App : MonoBehaviour {
         GameState = new Data.GameState();
 		Model = new Data.Model ();
 
-		Time.timeScale = 1;
+
 
 		// Are we in the Application Scene?
 		if ( SceneManager.GetActiveScene().name == "Application" )
@@ -66,6 +66,35 @@ public class App : MonoBehaviour {
 
         Application.Quit();
     }
+
+	public void PauseGame()
+	{
+		Time.timeScale = GameSpeeds.Paused;
+	}
+
+	public void HandleSpeedChange()
+	{
+		//Speed is progressively increased until it loops back to normal speed. If paused, go to normal speed
+		switch ((int)Time.timeScale) 
+		{
+			case GameSpeeds.Paused: 
+				Time.timeScale = GameSpeeds.NormalSpeed; 
+				break;
+			case GameSpeeds.NormalSpeed: 
+				Time.timeScale = GameSpeeds.DoubleSpeed; 
+				break;
+			case GameSpeeds.DoubleSpeed:
+				Time.timeScale = GameSpeeds.QuadrupleSpeed; 
+				break;
+			case GameSpeeds.QuadrupleSpeed: 
+				Time.timeScale = GameSpeeds.NormalSpeed; 
+				break;
+			default:
+				Debug.LogError ("Game speed reached unrecognised speed, resetting to normal");
+				Time.timeScale = GameSpeeds.NormalSpeed;
+				break;
+		}
+	}
 
     private void IncrementStarDate()
     {
