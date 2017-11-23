@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -221,17 +219,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Application\App.cs" />
     <Compile Include="Assets\Code\BaseClasses\AppMonoBehaviour.cs" />
-    <Compile Include="Assets\Data\GameState.cs" />
-    <Compile Include="Assets\Data\Lists\PlanetSprites.cs" />
-    <Compile Include="Assets\Data\Lists\SceneNames.cs" />
-    <Compile Include="Assets\Data\Model.cs" />
-    <Compile Include="Assets\Data\Planet.cs" />
-    <Compile Include="Assets\MainMenu\MainMenuController.cs" />
-    <Compile Include="Assets\Surface\TestBehaviourScript.cs" />
-    <Compile Include="Assets\System\PlanetBehaviourScript.cs" />
-    <Compile Include="Assets\System\SystemViewController.cs" />
+    <Compile Include="Assets\Code\Controllers\App.cs" />
+    <Compile Include="Assets\Code\Controllers\MainMenuController.cs" />
+    <Compile Include="Assets\Code\Controllers\SurfaceViewController.cs" />
+    <Compile Include="Assets\Code\Controllers\SystemViewController.cs" />
+    <Compile Include="Assets\Code\Controllers\UiController.cs" />
+    <Compile Include="Assets\Code\Data\Building.cs" />
+    <Compile Include="Assets\Code\Data\Colony.cs" />
+    <Compile Include="Assets\Code\Data\GameState.cs" />
+    <Compile Include="Assets\Code\Data\Lists\BuildingType.cs" />
+    <Compile Include="Assets\Code\Data\Lists\GameSpeeds.cs" />
+    <Compile Include="Assets\Code\Data\Lists\PlanetSprites.cs" />
+    <Compile Include="Assets\Code\Data\Lists\SceneNames.cs" />
+    <Compile Include="Assets\Code\Data\Model.cs" />
+    <Compile Include="Assets\Code\Data\Planet.cs" />
+    <Compile Include="Assets\Code\EventHandlers\MainMenuButtonHandler.cs" />
+    <Compile Include="Assets\Code\EventHandlers\PlanetBehaviourScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

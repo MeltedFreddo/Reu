@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Code.Controllers;
 using UnityEngine;
 
-namespace Code.BaseClasses
+namespace Assets.Code.BaseClasses
 {
 	public class AppMonoBehaviour : MonoBehaviour {
 

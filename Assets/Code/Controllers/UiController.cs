@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Code.Data.Lists;
 using UnityEngine;
 using UnityEngine.UI;
-using Code.BaseClasses;
-using Data.Lists;
 
-namespace Code.UserInterface
+namespace Assets.Code.Controllers
 {
 	public class UiController : MonoBehaviour {
 

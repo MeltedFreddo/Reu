@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Data.Lists;
+﻿using Assets.Code.Data.Lists;
 
-namespace Data
+namespace Assets.Code.Data
 {
 	public class Building {
 		public BuildingType BuildingType { get; set; }

@@ -397,10 +397,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 539085697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2de304279920de43844df8060165f09, type: 3}
+  m_Script: {fileID: 11500000, guid: e0716af25f1a1c444b479eb1376bde29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppPrefab: {fileID: 0}
 --- !u!1 &835491930
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +473,7 @@ GameObject:
   - component: {fileID: 939122962}
   - component: {fileID: 939122961}
   - component: {fileID: 939122960}
+  - component: {fileID: 939122963}
   m_Layer: 5
   m_Name: LoadGameButton
   m_TagString: Untagged
@@ -574,6 +574,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 939122958}
+--- !u!114 &939122963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 939122958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0716af25f1a1c444b479eb1376bde29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &948017698
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,10 +929,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1448104994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2de304279920de43844df8060165f09, type: 3}
+  m_Script: {fileID: 11500000, guid: e0716af25f1a1c444b479eb1376bde29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppPrefab: {fileID: 0}
 --- !u!1 &2087299070
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using Data.Lists;
+using System.Linq;
+using Assets.Code.Controllers;
+using Assets.Code.Data.Lists;
 
-namespace Data
+namespace Assets.Code.Data
 {
 	public class Colony  {
 
@@ -48,7 +47,7 @@ namespace Data
 
 		private void ProcessTaxation()
 		{			
-			decimal taxGenerated = Population * _avgSalaryPerYear * ((decimal)TaxRateInPercent / 100);
+			decimal taxGenerated = Population * (_avgSalaryPerYear / 365) * ((decimal)TaxRateInPercent / 100);
 			App.Instance.GameState.Money += taxGenerated;
 		}
 

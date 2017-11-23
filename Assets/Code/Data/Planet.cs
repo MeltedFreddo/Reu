@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Data
+namespace Assets.Code.Data
 {
     public class Planet : UnityEngine.Component
     {

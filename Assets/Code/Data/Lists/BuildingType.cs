@@ -1,4 +1,4 @@
-﻿namespace Data.Lists
+﻿namespace Assets.Code.Data.Lists
 {
 	public enum BuildingType {
 		Administration,
