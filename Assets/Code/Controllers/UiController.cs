@@ -17,7 +17,9 @@ namespace Assets.Code.Controllers
 			starDateText.text = App.Instance.GameState.StarDate.ToString("yyyy-MM-dd-H");
 			var moneyText = GameObject.Find ("MoneyText").GetComponent<Text>();
 			moneyText.text = App.Instance.GameState.Money.ToString("c0");
-		}
+		    var buttonText = GameObject.Find("SpeedControlButton").GetComponentInChildren<Text>();
+		    buttonText.text = string.Format("{0}x", Time.timeScale);
+        }
 
 
 		public void MainMenuButtonClick()
@@ -45,10 +47,8 @@ namespace Assets.Code.Controllers
 
 		public void SpeedControlButtonClick()
 		{
-			var buttonText = GetComponentInChildren<Text> ();
-			App.Instance.HandleSpeedChange ();
-			buttonText.text = string.Format ("{0}x", Time.timeScale);
-		}
+		    App.Instance.HandleSpeedChange();   
+        }
 	}
 }
 

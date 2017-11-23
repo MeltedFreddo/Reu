@@ -7,19 +7,19 @@ namespace Assets.Code.Controllers
 {
     public class App : MonoBehaviour {
 	
-        static App Singleton = null;
-        public static App Instance { get { return Singleton; } }
+        private static App _singleton;
+        public static App Instance { get { return _singleton; } }
 
-        private string CurrentSceneName;
+        private string _currentSceneName;
         public Data.GameState GameState;
         public Data.Model Model;
 
         void Awake(){
-            if (Singleton != null) {	
+            if (_singleton != null) {	
                 Debug.LogError ("App Singleton pattern violated");
             }
 
-            Singleton = this;
+            _singleton = this;
 
             GameState = new Data.GameState();
             Model = new Data.Model ();
@@ -51,9 +51,9 @@ namespace Assets.Code.Controllers
             if (SceneManager.GetActiveScene ().name != sceneName) {
                 Debug.Log ("App: Loading Scene, " + sceneName);
 
-                CurrentSceneName = sceneName;
+                _currentSceneName = sceneName;
 
-                SceneManager.LoadSceneAsync (CurrentSceneName);	
+                SceneManager.LoadSceneAsync (_currentSceneName);	
             }
         }
 
@@ -87,10 +87,13 @@ namespace Assets.Code.Controllers
                     Time.timeScale = GameSpeeds.DoubleSpeed; 
                     break;
                 case GameSpeeds.DoubleSpeed:
-                    Time.timeScale = GameSpeeds.QuadrupleSpeed; 
+                    Time.timeScale = GameSpeeds.FourTimesSpeed; 
                     break;
-                case GameSpeeds.QuadrupleSpeed: 
-                    Time.timeScale = GameSpeeds.NormalSpeed; 
+                case GameSpeeds.FourTimesSpeed: 
+                    Time.timeScale = GameSpeeds.EightTimesSpeed;
+                    break;
+                case GameSpeeds.EightTimesSpeed:
+                    Time.timeScale = GameSpeeds.NormalSpeed;
                     break;
                 default:
                     Debug.LogError ("Game speed reached unrecognised speed, resetting to normal");

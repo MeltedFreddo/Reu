@@ -6,6 +6,7 @@ namespace Assets.Code.Data.Lists
         public const int Paused = 0;
         public const int NormalSpeed = 1;
         public const int DoubleSpeed = 2;
-        public const int QuadrupleSpeed = 4;
+        public const int FourTimesSpeed = 4;
+        public const int EightTimesSpeed = 8;
     }
 }

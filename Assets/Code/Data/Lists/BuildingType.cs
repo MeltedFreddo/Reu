@@ -4,7 +4,7 @@
 		Administration,
 		MiningStation,
 		Residence,
-		Hostital,
+		Hospital,
 		PowerPlant,
 		Derrick,
 		Mine,

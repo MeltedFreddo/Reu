@@ -56,7 +56,7 @@ namespace Assets.Code.Data
 			//TODO logic for happiness
 			var overcrowdingPenalty = 0;
 			var taxationPenalty = 0;
-			var recreationBonus = Buildings.Where(x => x.BuildingType == BuildingType.Park && x.IsActive).Count();
+			var recreationBonus = Buildings.Count(x => x.BuildingType == BuildingType.Park && x.IsActive);
 
 			var happinessChange = 0;
 
@@ -70,15 +70,15 @@ namespace Assets.Code.Data
 			//TODO health?
 
 			//cap under the amount of free space
-			var populationIncreaseAmount = Math.Min(CalculateFreeSpace(), Population + Population * populationIncreaseRate); 
+			var populationIncreaseAmount = Math.Min(CalculateFreeSpace(), Population * populationIncreaseRate); 
 
 			Population += (long)populationIncreaseAmount;
 		}
 
 		private long CalculateFreeSpace()
 		{
-			var totalColonyCapacity = Buildings.Where (x => x.BuildingType == BuildingType.Residence && x.IsActive).Count () * _residenceCapacity;
-			return Math.Max(totalColonyCapacity - Population, 0);
+			var totalColonyCapacity = Buildings.Count (x => x.BuildingType == BuildingType.Residence && x.IsActive) * _residenceCapacity;
+			return totalColonyCapacity - Population;
 		}
 
 		private float ConvertHappinessToGrowth()
