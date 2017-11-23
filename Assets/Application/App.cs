@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Data.Lists;
 using UnityEngine.SceneManagement;
@@ -47,11 +48,13 @@ public class App : MonoBehaviour {
 
 	public void LoadScene( string sceneName )
 	{
-		Debug.Log("App: Loading Scene, " + sceneName);
+		if (SceneManager.GetActiveScene ().name != sceneName) {
+			Debug.Log ("App: Loading Scene, " + sceneName);
 
-		CurrentSceneName = sceneName;
+			CurrentSceneName = sceneName;
 
-		SceneManager.LoadSceneAsync(CurrentSceneName);
+			SceneManager.LoadSceneAsync (CurrentSceneName);	
+		}
 	}
 
 	public void LoadMainMenu()
@@ -105,7 +108,13 @@ public class App : MonoBehaviour {
     }
 
 	private void ProcessDay(){
-        GameState.Money++;
+
+		foreach (var colony in Model.Planets.Where(x => x.Colony != null).Select(x => x.Colony)) 
+		{
+			colony.ProcessColony ();
+		}
+
+        
         GameState.Energon++;
         GameState.Detoxin++;
         GameState.Kremir++;

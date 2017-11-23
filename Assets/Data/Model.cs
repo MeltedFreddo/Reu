@@ -12,7 +12,7 @@ namespace Data
         {
             Planets = new List<Planet>
                     {
-                        new Planet {SpriteName = PlanetSprites.EarthPlanet, Size = 0.1f},
+				new Planet {SpriteName = PlanetSprites.EarthPlanet, Size = 0.1f, Colony = new Colony()},
                         new Planet {SpriteName = PlanetSprites.BluePlanet, Size = 0.12f},
                         new Planet {SpriteName = PlanetSprites.RedPlanet, Size = 0.07f},
                         new Planet {SpriteName = PlanetSprites.WaterPlanet, Size = 0.09f},

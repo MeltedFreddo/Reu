@@ -18,6 +18,8 @@ namespace Code.UserInterface
 		void Update () {
 			var starDateText = GameObject.Find ("CurrentStarDate").GetComponent<Text>();
 			starDateText.text = App.Instance.GameState.StarDate.ToString("yyyy-MM-dd-H");
+			var moneyText = GameObject.Find ("MoneyText").GetComponent<Text>();
+			moneyText.text = App.Instance.GameState.Money.ToString("c0");
 		}
 
 

@@ -6,7 +6,7 @@ namespace Data
     {
         public string SpriteName { get; set; }
         public float Size { get; set; }
-        //public Colony Colony { get; set; }
+        public Colony Colony { get; set; }
 
         public GameObject GameObject { get; set; }
     }
