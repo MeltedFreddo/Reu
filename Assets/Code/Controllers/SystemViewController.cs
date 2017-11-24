@@ -49,6 +49,7 @@ namespace Assets.Code.Controllers
 					var iconShiftVector = new Vector3(0, (collider.radius + iconCollider.radius + 1) * thisPlanetScale, 0);
 					iconShiftVector = theStar.transform.rotation * iconShiftVector;
 					icon.transform.position += iconShiftVector;
+
 				}
 			}        
 		}
