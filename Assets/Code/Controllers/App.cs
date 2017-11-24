@@ -36,8 +36,7 @@ namespace Assets.Code.Controllers
 			else
 			{
 				// This is a temporary instance, create dummy game data
-				GameState = new Data.GameState();
-				Model = new Data.Model();
+				AssembleNewGameState();
 			}
 		}
 
@@ -53,12 +52,17 @@ namespace Assets.Code.Controllers
 		
 		}
 
-		public void StartNewGame()		
+		private void AssembleNewGameState()
 		{
 			GameState = new Data.GameState();
 			Model = new Data.Model();
-			HandleSpeedChange();
+			Time.timeScale = 1;
 			InvokeRepeating("IncrementStarDate", 0, 1);
+		}
+
+		public void StartNewGame()		
+		{
+			AssembleNewGameState();
 			LoadScene(SceneNames.SystemView);
 		}
 

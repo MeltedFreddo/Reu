@@ -2,7 +2,7 @@
 
 namespace Assets.Code.Data
 {
-    public class Planet : UnityEngine.Component
+    public class Planet
     {
         public string SpriteName { get; set; }
         public float Size { get; set; }
