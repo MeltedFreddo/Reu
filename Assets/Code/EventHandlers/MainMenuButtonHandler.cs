@@ -4,20 +4,21 @@ using UnityEngine;
 
 namespace Assets.Code.EventHandlers
 {
-    public class MainMenuButtonHandler : MonoBehaviour {
+	public class MainMenuButtonHandler : MonoBehaviour
+	{
 
-        public void StartGame()
-        {
-            App.Instance.LoadScene(SceneNames.SystemView);
-        }
+		public void StartGame()
+		{
+			App.Instance.StartNewGame();
+		}
 
-        public void ExitGame()
-        {
+		public void ExitGame()
+		{
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+			UnityEditor.EditorApplication.isPlaying = false;
 #else
-        App.Instance.Quit();
+        	App.Instance.Quit();
 #endif
-        }
-    }
+		}
+	}
 }

@@ -13,10 +13,20 @@ namespace Assets.Code.Controllers
 
 		// Update is called once per frame
 		void Update () {
+			if (Input.GetKeyUp(KeyCode.Space))
+			{
+				if (Time.timeScale == 0)
+					SpeedControlButtonClick();
+				else
+					PauseButtonClick();
+			}
+
 			var starDateText = GameObject.Find ("CurrentStarDate").GetComponent<Text>();
 			starDateText.text = App.Instance.GameState.StarDate.ToString("yyyy-MM-dd-H");
 			var moneyText = GameObject.Find ("MoneyText").GetComponent<Text>();
 			moneyText.text = App.Instance.GameState.Money.ToString("c0");
+			var pauseButtonText = GameObject.Find("PauseButton").GetComponentInChildren<Text>();
+			pauseButtonText.text = Time.timeScale == 0 ? "Resume" : "Pause";
 		    var buttonText = GameObject.Find("SpeedControlButton").GetComponentInChildren<Text>();
 		    buttonText.text = string.Format("{0}x", Time.timeScale);
         }
@@ -34,14 +44,11 @@ namespace Assets.Code.Controllers
 
 		public void PauseButtonClick()
 		{
-			var buttonText = GetComponentInChildren<Text> ();
 			if ((int)Time.timeScale != GameSpeeds.Paused) {
 				App.Instance.PauseGame ();
-				buttonText.text = "Resume";
 			} else 
 			{
 				App.Instance.HandleSpeedChange ();
-				buttonText.text = "Pause";
 			}				
 		}
 
