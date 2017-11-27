@@ -3,9 +3,12 @@
 namespace Assets.Code.Data
 {
 	public class Building {
-		public BuildingType BuildingType { get; set; }
+		public string BuildingType { get; set; }
 		public int PowerConsumption { get; set; }
 		public bool IsActive { get; set; }
-	}
+
+        public int X { get; set; }
+	    public int Y { get; set; }
+    }
 }
 

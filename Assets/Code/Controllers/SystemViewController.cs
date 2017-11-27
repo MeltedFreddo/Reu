@@ -36,8 +36,8 @@ namespace Assets.Code.Controllers
 				var planetPrefab = PlanetPrefabs.Single(x => x.name == thisPlanet.SpriteName);
 				thisPlanet.GameObject = Instantiate(planetPrefab, pos, theStar.transform.rotation);
 				var collider = thisPlanet.GameObject.AddComponent<SphereCollider>();
-
-				planets.Add(thisPlanet);
+			    
+                planets.Add(thisPlanet);
 
 				if (thisPlanet.Colony != null)
 				{

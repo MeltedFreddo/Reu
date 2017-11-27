@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Code.Controllers;
+using Assets.Code.Data;
 using Assets.Code.Data.Lists;
 
 namespace Assets.Code.EventHandlers
@@ -19,10 +20,11 @@ namespace Assets.Code.EventHandlers
             {		
                 RaycastHit hitInfo = new RaycastHit();
                 bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
-                if (hit && hitInfo.transform.gameObject == this.gameObject) 
+                if (hit && hitInfo.transform.gameObject == gameObject) 
                 {
-                    Debug.Log("Hit " + hitInfo.transform.gameObject.name);
+                    Debug.Log("Hit " + gameObject.name);
 
+                    //App.Instance.CurrentColony = gameObject.GetComponent<Planet>().Colony;
 					App.Instance.LoadScene(SceneNames.SurfaceView);
 
                 } else {

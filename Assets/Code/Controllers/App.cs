@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Assets.Code.Data;
 using Assets.Code.Data.Lists;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,8 +14,12 @@ namespace Assets.Code.Controllers
 		public static App Instance { get { return _singleton; } }
 
 		private string _currentSceneName;
-		public Data.GameState GameState;
+        
+        public Data.GameState GameState;
 		public Data.Model Model;
+
+	    public Colony CurrentColony { get; set; }
+
 
 		void Awake()
 		{
@@ -149,5 +154,6 @@ namespace Assets.Code.Controllers
 			GameState.Raenium++;
 			GameState.Texon++;
 		}
+        
 	}
 }

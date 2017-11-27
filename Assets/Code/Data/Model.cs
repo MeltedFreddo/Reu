@@ -14,9 +14,9 @@ namespace Assets.Code.Data
 			Planets = new List<Planet> {
 				new Planet {SpriteName = PlanetSprites.EarthPlanet, Size = 0.1f, Colony = new Colony {
 						Buildings = new List<Building> {
-							new Building { BuildingType = BuildingType.Residence, IsActive = true, PowerConsumption = 1 },
-				        
-						}
+							new Building { BuildingType = BuildingType.Residence, IsActive = true, PowerConsumption = 1, X = 0, Y = 0 },
+						    new Building { BuildingType = BuildingType.Park, IsActive = true, PowerConsumption = 1, X = 1, Y = 1 },
+                        }
 					}
 				},
 				new Planet { SpriteName = PlanetSprites.BluePlanet, Size = 0.12f },
@@ -24,7 +24,7 @@ namespace Assets.Code.Data
 				new Planet { SpriteName = PlanetSprites.WaterPlanet, Size = 0.09f },
 				new Planet {SpriteName = PlanetSprites.DarkPlanet, Size = 0.18f, Colony = new Colony {
 						Buildings = new List<Building> {
-							new Building { BuildingType = BuildingType.Residence, IsActive = true, PowerConsumption = 1 },
+							new Building { BuildingType = BuildingType.Residence, IsActive = true, PowerConsumption = 1, X = 0, Y = 0 },
 
 						}
 					}
