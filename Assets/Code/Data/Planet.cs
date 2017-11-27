@@ -8,6 +8,5 @@ namespace Assets.Code.Data
         public float Size { get; set; }
         public Colony Colony { get; set; }
 
-        public GameObject GameObject { get; set; }
     }
 }

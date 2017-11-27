@@ -8,6 +8,8 @@ namespace Assets.Code.EventHandlers
 {
     public class PlanetBehaviourScript : MonoBehaviour {
 	
+		public Planet Planet;
+
         // Use this for initialization
         void Start () {
 		
@@ -24,7 +26,7 @@ namespace Assets.Code.EventHandlers
                 {
                     Debug.Log("Hit " + gameObject.name);
 
-                    //App.Instance.CurrentColony = gameObject.GetComponent<Planet>().Colony;
+					App.Instance.CurrentColony = Planet.Colony;
 					App.Instance.LoadScene(SceneNames.SurfaceView);
 
                 } else {

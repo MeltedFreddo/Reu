@@ -20,17 +20,6 @@ namespace Assets.Code.Controllers
         {
             var currentColony = App.Instance.CurrentColony;
 
-            if (currentColony == null)
-            {
-                //TODO get rid of this
-                currentColony  = new Data.Colony {
-                    Buildings = new List<Data.Building> {
-                        new Data.Building { BuildingType = Data.Lists.BuildingType.Residence, IsActive = true, PowerConsumption = 1, X = 0, Y = 0 },
-                        new Data.Building { BuildingType = Data.Lists.BuildingType.Park, IsActive = true, PowerConsumption = 1, X = 1, Y = 1 },
-                    }   
-                };
-            }
-
             if (currentColony != null)
             {
 

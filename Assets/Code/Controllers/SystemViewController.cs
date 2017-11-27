@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Code.BaseClasses;
+using Assets.Code.EventHandlers;
 using UnityEngine;
 
 namespace Assets.Code.Controllers
@@ -8,7 +9,7 @@ namespace Assets.Code.Controllers
 	public class SystemViewController : AppMonoBehaviour
 	{
 		private GameObject theStar;
-		private ICollection<Data.Planet> planets;
+		private ICollection<GameObject> planets;
 
 		public GameObject StarPrefab;
 		public GameObject HasColonyFlagPrefab;
@@ -23,7 +24,7 @@ namespace Assets.Code.Controllers
 			theStar = Instantiate(StarPrefab);
 			theStar.AddComponent<SphereCollider>();
 
-			planets = new List<Data.Planet>();
+			planets = new List<GameObject>();
 
 			for (var i = 0; i < model.Planets.Count(); i++)
 			{
@@ -34,17 +35,19 @@ namespace Assets.Code.Controllers
 				Vector3 pos = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
 
 				var planetPrefab = PlanetPrefabs.Single(x => x.name == thisPlanet.SpriteName);
-				thisPlanet.GameObject = Instantiate(planetPrefab, pos, theStar.transform.rotation);
-				var collider = thisPlanet.GameObject.AddComponent<SphereCollider>();
-			    
-                planets.Add(thisPlanet);
+				var planetGameObject = Instantiate(planetPrefab, pos, theStar.transform.rotation);
+				var collider = planetGameObject.AddComponent<SphereCollider>();
+				var planetBehaviourScript = planetGameObject.GetComponent<PlanetBehaviourScript>();
+				planetBehaviourScript.Planet = thisPlanet;
+
+                planets.Add(planetGameObject);
 
 				if (thisPlanet.Colony != null)
 				{
 					var icon = Instantiate(HasColonyFlagPrefab, pos, theStar.transform.rotation);
-					icon.transform.parent = thisPlanet.GameObject.transform;
+					icon.transform.parent = planetGameObject.transform;
 
-					var thisPlanetScale = thisPlanet.GameObject.transform.localScale.x;
+					var thisPlanetScale = planetGameObject.transform.localScale.x;
 					var iconCollider = icon.AddComponent<SphereCollider>();
 					var iconShiftVector = new Vector3(0, (collider.radius + iconCollider.radius + 1) * thisPlanetScale, 0);
 					iconShiftVector = theStar.transform.rotation * iconShiftVector;
@@ -60,21 +63,22 @@ namespace Assets.Code.Controllers
 			//orbit planets around star
 			foreach (var planet in planets)
 			{
-				var planetPosition = planet.GameObject.transform.position;
+				var planetBehaviourScript = planet.GetComponent<PlanetBehaviourScript>();
+				var planetPosition = planet.transform.position;
 				var distanceFromSun = (theStar.transform.position - planetPosition).magnitude;            
 				var orbitSpeed = 50 / distanceFromSun;
-				planet.GameObject.transform.RotateAround(theStar.transform.position, new Vector3(0, 1, 0), orbitSpeed * Time.deltaTime); // (1 is left) (-1 is right)
-				planet.GameObject.transform.rotation = StarPrefab.transform.rotation;
+				planet.transform.RotateAround(theStar.transform.position, new Vector3(0, 1, 0), orbitSpeed * Time.deltaTime); // (1 is left) (-1 is right)
+				planet.transform.rotation = StarPrefab.transform.rotation;
 
 				//update scale
 				var distanceFromZPlane = (new Vector3(planetPosition.x, planetPosition.y, 0) - planetPosition).z;           
-				var planetScale = planet.Size; //0.1
+				var planetScale = planetBehaviourScript.Planet.Size; //0.1
 				var newScale = 0f;
 				if (distanceFromZPlane != 0)
 				{
 					newScale = planetScale + ConvertDistanceToScale(5, distanceFromZPlane, planetScale);
 				}
-				planet.GameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
+				planet.transform.localScale = new Vector3(newScale, newScale, newScale);
 
 			}   
 		}
