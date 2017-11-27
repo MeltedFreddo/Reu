@@ -1,23 +1,23 @@
 # Reu
 Reu
 
-## Todo
+# Todo
 
-# Surface View
+## Surface View
 Buildings render on the screen
 Building animations
 Planet surfaces
 Unbuildable terrain
 
-# System view
+## System view
 Uniform size of colony icons
 Observatory progressively uncovers unseen planets
 Multiple systems
 
-# Colony List
+## Colony List
 
-# Space combat
+## Space combat
 
-# Ground combat
+## Ground combat
 
-# Mining & Resource Management
+## Mining & Resource Management
