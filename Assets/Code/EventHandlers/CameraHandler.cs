@@ -7,9 +7,17 @@ namespace Assets.Code.EventHandlers
         private bool _isMouseMovingCamera;
         private Vector3 _originalMousePosition;
 
+		private int mapWidth = 50;
+		private int mapHeight = 50;
+
+		public float minZoom = 3f;
+		private float maxZoom = 8f;
+
+		private float minX, maxX, minY, maxY;
+
         // Use this for initialization
         void Start () {
-		
+			RecalculateScreenBoundaries();
         }
 	
         // Update is called once per frame
@@ -33,12 +41,14 @@ namespace Assets.Code.EventHandlers
             }
             if (Input.GetKey(KeyCode.KeypadPlus))
             {
-                Camera.main.orthographicSize -= .1f;
+				ZoomCamera(-.1f);
             }
             if (Input.GetKey(KeyCode.KeypadMinus))
             {
-                Camera.main.orthographicSize += .1f;
+				ZoomCamera(.1f);
             }
+
+			ClampCameraToBoundary();
         }
 
         void LateUpdate()
@@ -66,12 +76,38 @@ namespace Assets.Code.EventHandlers
             var y = Input.mouseScrollDelta.y;
             if (y >= 1)
             {
-                Camera.main.orthographicSize -= .3f;
+				ZoomCamera(-.3f);
             }
             else if (y <= -1)
             {
-                Camera.main.orthographicSize += .3f; 
+				ZoomCamera(.3f);
             }
+			ClampCameraToBoundary();
         }
+
+		void RecalculateScreenBoundaries() {
+			float effectiveCameraHeight = Camera.main.orthographicSize * 2.0f;
+			float screenScale = effectiveCameraHeight * Screen.width / Screen.height;
+
+			maxX = (mapWidth - screenScale) / 2.0f;
+			maxY = (mapHeight - screenScale) / 2.0f;
+			minX = -maxX;
+			minY = -maxY;
+		}
+
+		private void ZoomCamera(float zoomDirectionAndRate)
+		{
+			Camera.main.orthographicSize += zoomDirectionAndRate; 
+			Camera.main.orthographicSize = Mathf.Clamp (Camera.main.orthographicSize, minZoom, maxZoom);
+			RecalculateScreenBoundaries();
+		}
+
+		private void ClampCameraToBoundary()
+		{
+			Vector3 pos = transform.position;
+			pos.x = Mathf.Clamp (pos.x, minX, maxX);
+			pos.y = Mathf.Clamp (pos.y, minY, maxY);
+			transform.position = pos;
+		}
     }
 }
