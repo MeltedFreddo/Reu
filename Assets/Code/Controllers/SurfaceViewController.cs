@@ -30,7 +30,7 @@ namespace Assets.Code.Controllers
                 {
                     var thisBuilding = allBuildings.ElementAt(i);
                     var buildingPrefab = BuildingPrefabs.Single(x => x.name == thisBuilding.BuildingType);
-                    var pos = new Vector3(thisBuilding.X, thisBuilding.Y, 0);
+					var pos = new Vector3(thisBuilding.X + (thisBuilding.WidthInTiles / 2f), thisBuilding.Y + (thisBuilding.HeightInTiles / 2f), 0);
                     Instantiate(buildingPrefab, pos, Quaternion.identity);
                 }
             }
