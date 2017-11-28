@@ -8,17 +8,22 @@ namespace Assets.Code.Controllers
 {
     public class SurfaceViewController : AppMonoBehaviour
     {
-        public List<GameObject> BuildingPrefabs;
-
-        void Awake()
-        {
-            
-        }
+		public List<GameObject> SurfaceTilePrefabs;
+		public List<GameObject> BuildingPrefabs;
 
         // Use this for initialization
         void Start()
         {
-            var currentColony = App.Instance.CurrentColony;
+            var currentPlanet = App.Instance.CurrentPlanet;
+			var currentColony = currentPlanet.Colony;
+
+			//TODO tile choice and planet size
+			var surfaceTile = SurfaceTilePrefabs.Single(x => x.name == "Ash");
+			var surfaceTilePos = new Vector3(0, 0, 0);
+			var surfaceTileGameObject = Instantiate(surfaceTile, surfaceTilePos, Quaternion.identity);
+			var surfaceTileSpriteRenderer = surfaceTileGameObject.GetComponent<SpriteRenderer>();
+			surfaceTileSpriteRenderer.size = new Vector2(100, 100);
+
 
             if (currentColony != null)
             {

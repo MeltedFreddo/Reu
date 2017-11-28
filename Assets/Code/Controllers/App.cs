@@ -18,7 +18,7 @@ namespace Assets.Code.Controllers
         public Data.GameState GameState;
 		public Data.Model Model;
 
-	    public Colony CurrentColony { get; set; }
+	    public Planet CurrentPlanet { get; set; }
 
 
 		void Awake()
@@ -62,12 +62,18 @@ namespace Assets.Code.Controllers
 			GameState = new Data.GameState();
 			Model = new Data.Model();
 			Time.timeScale = 1;
-			InvokeRepeating("IncrementStarDate", 0, 1);
 		}
 
 		public void StartNewGame()		
 		{
 			AssembleNewGameState();
+			CancelInvoke("IncrementStarDate");
+			InvokeRepeating("IncrementStarDate", 0, 1);
+			LoadScene(SceneNames.SystemView);
+		}
+
+		public void LoadGame()
+		{
 			LoadScene(SceneNames.SystemView);
 		}
 

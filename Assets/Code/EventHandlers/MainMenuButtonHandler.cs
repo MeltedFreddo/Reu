@@ -12,6 +12,11 @@ namespace Assets.Code.EventHandlers
 			App.Instance.StartNewGame();
 		}
 
+		public void LoadGame()
+		{
+			App.Instance.LoadGame();
+		}
+
 		public void ExitGame()
 		{
 #if UNITY_EDITOR

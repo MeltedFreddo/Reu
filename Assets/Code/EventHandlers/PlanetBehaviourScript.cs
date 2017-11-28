@@ -26,7 +26,7 @@ namespace Assets.Code.EventHandlers
                 {
                     Debug.Log("Hit " + gameObject.name);
 
-					App.Instance.CurrentColony = Planet.Colony;
+					App.Instance.CurrentPlanet = Planet;
 					App.Instance.LoadScene(SceneNames.SurfaceView);
 
                 } else {
