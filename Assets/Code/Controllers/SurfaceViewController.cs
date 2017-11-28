@@ -22,7 +22,7 @@ namespace Assets.Code.Controllers
 			var surfaceTilePos = new Vector3(0, 0, 0);
 			var surfaceTileGameObject = Instantiate(surfaceTile, surfaceTilePos, Quaternion.identity);
 			var surfaceTileSpriteRenderer = surfaceTileGameObject.GetComponent<SpriteRenderer>();
-			surfaceTileSpriteRenderer.size = new Vector2(100, 100);
+			surfaceTileSpriteRenderer.size = new Vector2(50, 50);
 
 
             if (currentColony != null)

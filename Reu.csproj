@@ -234,6 +234,7 @@
     <Compile Include="Assets\Code\Data\Lists\SceneNames.cs" />
     <Compile Include="Assets\Code\Data\Model.cs" />
     <Compile Include="Assets\Code\Data\Planet.cs" />
+    <Compile Include="Assets\Code\EventHandlers\CameraHandler.cs" />
     <Compile Include="Assets\Code\EventHandlers\MainMenuButtonHandler.cs" />
     <Compile Include="Assets\Code\EventHandlers\PlanetBehaviourScript.cs" />
   </ItemGroup>

@@ -17,6 +17,12 @@ namespace Assets.Code.Data
 							new Building { BuildingType = BuildingType.Residence, IsActive = true, PowerConsumption = 1, X = 0, Y = 0, HeightInTiles = 1f, WidthInTiles = 1f },
 						    new Building { BuildingType = BuildingType.PowerPlant, IsActive = true, PowerConsumption = 1, X = 1, Y = 1, HeightInTiles = 2f, WidthInTiles = 2f },
 							new Building { BuildingType = BuildingType.Derrick, IsActive = true, PowerConsumption = 1, X = -1, Y = -1, HeightInTiles = 1f, WidthInTiles = 1.5f },
+                            new Building { BuildingType = BuildingType.Administration, IsActive = true, PowerConsumption = 1, X = 1, Y = -1, HeightInTiles = 2f, WidthInTiles = 2f },
+						    new Building { BuildingType = BuildingType.Derrick, IsActive = true, PowerConsumption = 1, X = -1, Y = -2, HeightInTiles = 1f, WidthInTiles = 1.5f },
+						    new Building { BuildingType = BuildingType.Farm, IsActive = true, PowerConsumption = 1, X = -1, Y = 0, HeightInTiles = 1f, WidthInTiles = 1f },
+						    new Building { BuildingType = BuildingType.Hospital, IsActive = true, PowerConsumption = 1, X = 0.5f, Y = -3, HeightInTiles = 2f, WidthInTiles = 2f },
+						    new Building { BuildingType = BuildingType.Spaceport, IsActive = true, PowerConsumption = 1, X = -4, Y = 1, HeightInTiles = 2f, WidthInTiles = 2f },
+						    new Building { BuildingType = BuildingType.Observatory, IsActive = true, PowerConsumption = 1, X = -1, Y = 3, HeightInTiles = 1.5f, WidthInTiles = 1.5f },
                         }
 					}
 				},
