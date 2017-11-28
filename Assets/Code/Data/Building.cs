@@ -7,8 +7,8 @@ namespace Assets.Code.Data
 		public int PowerConsumption { get; set; }
 		public bool IsActive { get; set; }
 
-        public int X { get; set; }
-	    public int Y { get; set; }
+		public float X { get; set; }
+		public float Y { get; set; }
 		public float HeightInTiles { get; set; }
 		public float WidthInTiles { get; set; }
     }
