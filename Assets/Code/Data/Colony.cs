@@ -6,30 +6,35 @@ using Assets.Code.Data.Lists;
 
 namespace Assets.Code.Data
 {
-	public class Colony  {
+	public class Colony
+	{
 
 		public IEnumerable<Building> Buildings { get; set; }
 
 		public long Population { get; set; }
+
 		public long HappinessInPercent { get; set; }
+
 		public long TaxRateInPercent { get; set; }
 
-
 		//TODO these settings could maybe go elsewhere
-		private const decimal _avgSalaryPerYear = 35000; //annual wage per person 35k
-		private const int _residenceCapacity = 100000; //100k per arcology thing
-		private const int _maxPopulationGrowthRateInPercent = 2; //how fast the pop grows at 100% happiness
+		private const decimal _avgSalaryPerYear = 35000;
+		//annual wage per person 35k
+		private const int _residenceCapacity = 100000;
+		//100k per arcology thing
+		private const int _maxPopulationGrowthRateInPercent = 2;
+		//how fast the pop grows at 100% happiness
 
 		public Colony()
 		{
-			Buildings = new List<Building> ();
+			Buildings = new List<Building>();
 
 			Population = 10000;
 			HappinessInPercent = 80;
 			TaxRateInPercent = 5;
 		}
 
-		public void OnBuildingAdded() 
+		public void OnBuildingAdded()
 		{
 			//TODO calculate energy use after new building add and turn off/on buildings to match available demand
 		}
@@ -37,11 +42,11 @@ namespace Assets.Code.Data
 		//TODO invoke this every week
 		public void ProcessColony()
 		{
-			if (Population > 0) 
+			if (Population > 0)
 			{
-				ProcessTaxation ();
-				ProcessHappiness ();
-				ProcessPopulationChange ();
+				ProcessTaxation();
+				ProcessHappiness();
+				ProcessPopulationChange();
 			}				
 		}
 
@@ -77,7 +82,7 @@ namespace Assets.Code.Data
 
 		private long CalculateFreeSpace()
 		{
-			var totalColonyCapacity = Buildings.Count (x => x.BuildingType == BuildingType.Residence && x.IsActive) * _residenceCapacity;
+			var totalColonyCapacity = Buildings.Count(x => x.BuildingType == BuildingType.Residence && x.IsActive) * _residenceCapacity;
 			return totalColonyCapacity - Population;
 		}
 

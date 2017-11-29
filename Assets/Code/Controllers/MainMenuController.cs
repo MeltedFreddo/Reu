@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Assets.Code.Controllers
 {
-    public class MainMenuController : AppMonoBehaviour {
+	public class MainMenuController : AppMonoBehaviour
+	{
 
 		void Awake()
 		{
 			
 		}
     
-    }
+	}
 }
