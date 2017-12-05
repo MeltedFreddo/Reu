@@ -9,43 +9,55 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1262294078914926}
+  m_RootGameObject: {fileID: 1086974549094826}
   m_IsPrefabParent: 1
---- !u!1 &1262294078914926
+--- !u!1 &1086974549094826
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4986172305243820}
-  - component: {fileID: 212199714069006428}
+  - component: {fileID: 4395333022925158}
+  - component: {fileID: 212397436880385924}
+  - component: {fileID: 114248036490345658}
   m_Layer: 0
-  m_Name: Administration
+  m_Name: MiningStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4986172305243820
+--- !u!4 &4395333022925158
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1262294078914926}
+  m_GameObject: {fileID: 1086974549094826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &212199714069006428
+--- !u!114 &114248036490345658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086974549094826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2db9f1a187b264587af79a6d93ae36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &212397436880385924
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1262294078914926}
+  m_GameObject: {fileID: 1086974549094826}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2107700e42226f14983fe0104ac2db8c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e2e1833d0e27e44194d063d6f2e99da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
