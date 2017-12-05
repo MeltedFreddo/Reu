@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Assets.Code.BaseClasses;
+using Assets.Code.EventHandlers;
 using UnityEngine;
 
 namespace Assets.Code.Controllers
@@ -34,8 +34,9 @@ namespace Assets.Code.Controllers
                     var buildingPrefab = BuildingPrefabs.Single(x => x.name == thisBuilding.BuildingType);
 					var pos = new Vector3(thisBuilding.X + (thisBuilding.WidthInTiles / 2f), thisBuilding.Y + (thisBuilding.HeightInTiles / 2f), 0);
                     var newBuildingGameObject = Instantiate(buildingPrefab, pos, Quaternion.identity);
-					var collider2D = newBuildingGameObject.AddComponent<BoxCollider2D>();
-
+					newBuildingGameObject.AddComponent<BoxCollider2D>();
+                    var buildingBehaviour = newBuildingGameObject.GetComponent<BuildingBehaviour>();
+                    buildingBehaviour.Building = thisBuilding;
                 }
             }
             else

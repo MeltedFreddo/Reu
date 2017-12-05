@@ -1,33 +1,67 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Code.Data;
 using UnityEngine;
 
-public class BuildingBehaviour : MonoBehaviour {
+namespace Assets.Code.EventHandlers
+{
+    public class BuildingBehaviour : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+        public Building Building;
+
+        // Use this for initialization
+        void Start () {
 		
-	}
+        }
 	
-	// Update is called once per frame
-	void Update () {
+        // Update is called once per frame
+        void Update () {
 
-		if (Input.GetMouseButtonUp(0))
-		{
-			//Converting Mouse Pos to 2D (vector2) World Pos
-			Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-			var hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
+            if (Input.GetMouseButtonUp(0))
+            {
+                //Converting Mouse Pos to 2D (vector2) World Pos
+                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+                var hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
-			if (hit)
-			{
-				Debug.Log(hit.transform.name);
-				ToggleBuildingSelection(hit.transform.gameObject);
-			}
-		}
-	}
+                if (hit && transform == hit.transform)
+                {
+                    Debug.Log("Toggling building selection of " + hit.transform.name);
+                    ToggleBuildingSelection();
+                }
+            }
+        }
 
-	void ToggleBuildingSelection(GameObject building)
-	{		
-		Instantiate(Resources.Load("Prefabs/Buildings/SelectedOutline"), building.transform.position, Quaternion.identity);
-	}
+        void ToggleBuildingSelection()
+        {
+            var selectedOutline = transform.Find("SelectedOutline");
+            if (selectedOutline != null)
+            {
+                Destroy(selectedOutline.gameObject);
+            }
+            else
+            {
+                //unselect all buildings
+                var selectedOutlines = GameObject.FindGameObjectsWithTag("SelectedOutline");
+                foreach (var outline in selectedOutlines)
+                {
+                    Destroy(outline);
+                }
+
+
+                var selectedOutlineGameObject = Instantiate((GameObject)Resources.Load("Prefabs/Buildings/SelectedOutline"), transform.position, Quaternion.identity);
+                selectedOutlineGameObject.name = "SelectedOutline";
+                selectedOutlineGameObject.tag = "SelectedOutline";
+                selectedOutlineGameObject.transform.parent = transform;
+                var spriteRenderer = selectedOutlineGameObject.GetComponent<SpriteRenderer>();
+                spriteRenderer.sortingOrder = 1;
+
+                selectedOutlineGameObject.transform.localScale =
+                    new Vector3(
+                        selectedOutlineGameObject.transform.localScale.x * Building.WidthInTiles,
+                        selectedOutlineGameObject.transform.localScale.y * Building.HeightInTiles,
+                        selectedOutlineGameObject.transform.localScale.z
+                    );
+            
+            }
+        
+        }
+    }
 }
