@@ -21,11 +21,27 @@ namespace Assets.Code.EventHandlers
                 Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
                 var hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
-                if (hit && transform == hit.transform)
+                if (hit)
                 {
-                    Debug.Log("Toggling building selection of " + hit.transform.name);
-                    ToggleBuildingSelection();
+                    if (transform == hit.transform)
+                    {
+                        Debug.Log("Toggling building selection of " + hit.transform.name);
+                        ToggleBuildingSelection();
+                    }
                 }
+                else
+                {
+                    UnselectAllBuildings();
+                }
+            }
+        }
+
+        void UnselectAllBuildings()
+        {
+            var selectedOutlines = GameObject.FindGameObjectsWithTag("SelectedOutline");
+            foreach (var outline in selectedOutlines)
+            {
+                Destroy(outline);
             }
         }
 
@@ -38,12 +54,7 @@ namespace Assets.Code.EventHandlers
             }
             else
             {
-                //unselect all buildings
-                var selectedOutlines = GameObject.FindGameObjectsWithTag("SelectedOutline");
-                foreach (var outline in selectedOutlines)
-                {
-                    Destroy(outline);
-                }
+                UnselectAllBuildings();
 
 
                 var selectedOutlineGameObject = Instantiate((GameObject)Resources.Load("Prefabs/Buildings/SelectedOutline"), transform.position, Quaternion.identity);
