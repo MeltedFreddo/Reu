@@ -98,31 +98,21 @@ namespace Assets.Code.Controllers
             buildingBehaviour.Building = building;
             buildingGameObject.AddComponent<PlaceBuildingBehaviour>();
 
-            for (var i = 0; i < building.WidthInTiles; i++)
-            {
-                for (var j = 0; j < building.HeightInTiles; j++)
-                {
-                    var tilePosition = 
-                        new Vector3(
-                            buildingGameObject.transform.position.x + i * 0.25f - building.WidthInTiles * 0.25f,
-                            buildingGameObject.transform.position.y + j * 0.25f - building.WidthInTiles * 0.25f,
-                            buildingGameObject.transform.position.z
-                            );
+			var tileOutline = Instantiate((GameObject)Resources.Load("Prefabs/Buildings/PlacementOutline"), pos, Quaternion.identity);
 
-                    var tileOutline = Instantiate((GameObject)Resources.Load("Prefabs/Buildings/PlacementOutline"), tilePosition, Quaternion.identity);
+			tileOutline.transform.localScale =
+				new Vector3(
+					tileOutline.transform.localScale.x / 2,
+					tileOutline.transform.localScale.y / 2,
+					tileOutline.transform.localScale.z
+				);
 
-                    tileOutline.transform.localScale =
-                        new Vector3(
-                            tileOutline.transform.localScale.x / 2,
-                            tileOutline.transform.localScale.y / 2,
-                            tileOutline.transform.localScale.z
-                        );
+			tileOutline.tag = "PlacementOutline";
+			var spriteRenderer = tileOutline.GetComponent<SpriteRenderer>();
+			spriteRenderer.sortingOrder = 3;
+			spriteRenderer.size = new Vector2(building.WidthInTiles, building.HeightInTiles);
+			tileOutline.transform.parent = buildingGameObject.transform;
 
-                    tileOutline.tag = "PlacementOutline";
-                    tileOutline.GetComponent<SpriteRenderer>().sortingOrder = 3;
-                    tileOutline.transform.parent = buildingGameObject.transform;
-                }
-            }
         }
     }
 }
