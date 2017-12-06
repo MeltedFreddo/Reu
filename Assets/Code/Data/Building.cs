@@ -14,9 +14,9 @@ namespace Assets.Code.Data
 
 		public float Y { get; set; }
 
-		public float HeightInTiles { get; set; }
+		public int HeightInTiles { get; set; }
 
-		public float WidthInTiles { get; set; }
+		public int WidthInTiles { get; set; }
 	}
 }
 
