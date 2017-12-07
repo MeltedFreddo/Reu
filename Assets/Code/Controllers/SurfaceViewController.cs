@@ -52,8 +52,62 @@ namespace Assets.Code.Controllers
         // Update is called once per frame
         void Update()
         {
+			if (Input.GetMouseButtonUp(0))
+			{
+				//Converting Mouse Pos to 2D (vector2) World Pos
+				Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+				var hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
+				if (hit)
+				{
+					Debug.Log("Toggling building selection of " + hit.transform.name);
+					ToggleBuildingSelection(hit.transform.gameObject);
+				}
+				else
+				{
+					UnselectAllBuildings();
+				}
+			}
         }
+
+
+		void UnselectAllBuildings()
+		{
+			var selectedOutlines = GameObject.FindGameObjectsWithTag("SelectedOutline");
+			foreach (var outline in selectedOutlines)
+			{
+				Destroy(outline);
+			}
+		}
+
+		void ToggleBuildingSelection(GameObject buildingGameObject)
+		{
+			var selectedOutline = buildingGameObject.transform.Find("SelectedOutline");
+			if (selectedOutline != null)
+			{
+				Destroy(selectedOutline.gameObject);
+			}
+			else
+			{
+				UnselectAllBuildings();
+
+				var selectedOutlineGameObject = Instantiate((GameObject)Resources.Load("Prefabs/Buildings/SelectedOutline"), buildingGameObject.transform.position, Quaternion.identity);
+				selectedOutlineGameObject.name = "SelectedOutline";
+				selectedOutlineGameObject.tag = "SelectedOutline";
+				selectedOutlineGameObject.transform.parent = buildingGameObject.transform;
+				var spriteRenderer = selectedOutlineGameObject.GetComponent<SpriteRenderer>();
+				spriteRenderer.sortingOrder = 1;
+				var building = buildingGameObject.GetComponent<BuildingBehaviour>().Building;
+
+				selectedOutlineGameObject.transform.localScale =
+					new Vector3(
+						selectedOutlineGameObject.transform.localScale.x * building.WidthInTiles / 2,
+						selectedOutlineGameObject.transform.localScale.y * building.HeightInTiles / 2,
+						selectedOutlineGameObject.transform.localScale.z
+					);
+			}
+		}
+
 
         public void AddBuildingButtonClick()
         {
