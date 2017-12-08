@@ -9,7 +9,7 @@ namespace Assets.Code.Data
 	public class Colony
 	{
 
-		public IEnumerable<Building> Buildings { get; set; }
+		public ICollection<Building> Buildings { get; set; }
 
 		public long Population { get; set; }
 

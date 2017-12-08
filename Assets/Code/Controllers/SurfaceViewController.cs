@@ -35,9 +35,8 @@ namespace Assets.Code.Controllers
                 {
                     var thisBuilding = allBuildings.ElementAt(i);
                     var buildingPrefab = BuildingPrefabs.Single(x => x.name == thisBuilding.BuildingType);
-					var pos = new Vector3(thisBuilding.X + (thisBuilding.WidthInTiles / 2f), thisBuilding.Y + (thisBuilding.HeightInTiles / 2f), 0);
+					var pos = new Vector3(thisBuilding.X + (thisBuilding.WidthInTiles / 4f), thisBuilding.Y - (thisBuilding.HeightInTiles / 4f), 0);
                     var newBuildingGameObject = Instantiate(buildingPrefab, pos, Quaternion.identity);
-					newBuildingGameObject.AddComponent<BoxCollider2D>();
                     var buildingBehaviour = newBuildingGameObject.GetComponent<BuildingBehaviour>();
                     buildingBehaviour.Building = thisBuilding;
                 }
@@ -96,7 +95,7 @@ namespace Assets.Code.Controllers
 				selectedOutlineGameObject.tag = "SelectedOutline";
 				selectedOutlineGameObject.transform.parent = buildingGameObject.transform;
 				var spriteRenderer = selectedOutlineGameObject.GetComponent<SpriteRenderer>();
-				spriteRenderer.sortingOrder = 1;
+				spriteRenderer.sortingOrder = 5;
 				var building = buildingGameObject.GetComponent<BuildingBehaviour>().Building;
 
 				selectedOutlineGameObject.transform.localScale =
