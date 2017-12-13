@@ -229,6 +229,7 @@
     <Compile Include="Assets\Code\Controllers\UiController.cs" />
     <Compile Include="Assets\Code\Data\Building.cs" />
     <Compile Include="Assets\Code\Data\Colony.cs" />
+    <Compile Include="Assets\Code\Data\GameContent\Buildings.cs" />
     <Compile Include="Assets\Code\Data\GameState.cs" />
     <Compile Include="Assets\Code\Data\Lists\BuildingType.cs" />
     <Compile Include="Assets\Code\Data\Lists\GameSpeeds.cs" />
