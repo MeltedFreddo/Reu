@@ -4,13 +4,16 @@ using Assets.Code.BaseClasses;
 using Assets.Code.Behaviours;
 using Assets.Code.Data;
 using Assets.Code.EventHandlers;
+using Assets.Code.Data.GameContent;
 using Assets.Code.Data.Lists;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Code.Controllers
 {
     public class SurfaceViewController : AppMonoBehaviour
     {
+		public GameObject AddBuildingButtonPrefab;
 		public List<GameObject> SurfaceTilePrefabs;
 		public List<GameObject> BuildingPrefabs;
 
@@ -27,6 +30,25 @@ namespace Assets.Code.Controllers
 			var surfaceTileSpriteRenderer = surfaceTileGameObject.GetComponent<SpriteRenderer>();
 			surfaceTileSpriteRenderer.size = new Vector2(50, 50);
 
+			// Create add building UI buttons
+			var ui = GameObject.Find("SurfaceMenuBar");
+			var buttonPosition = new Vector3(0, 190, 0);
+			foreach (var building in Buildings.GetAllBuildings())
+			{
+				var button = Instantiate(AddBuildingButtonPrefab);
+				button.transform.parent = ui.transform;
+				button.transform.localScale = new Vector3(1, 1, 1);
+				button.transform.localPosition = buttonPosition;
+				var buildingBehaviour = button.AddComponent<BuildingBehaviour>();
+				buildingBehaviour.Building = building;
+				var buttonText = button.GetComponentInChildren<Text>();
+				buttonText.text = building.BuildingType.ToString();
+				var buttonScript = button.GetComponent<Button>();
+				buttonScript.onClick.AddListener(() => AddBuildingButtonClick(button));
+
+				buttonPosition = buttonPosition + new Vector3(0, -40, 0);
+			}
+
 
             if (currentColony != null)
             {
@@ -40,6 +62,7 @@ namespace Assets.Code.Controllers
                     var buildingBehaviour = newBuildingGameObject.GetComponent<BuildingBehaviour>();
                     buildingBehaviour.Building = thisBuilding;
                 }
+					
             }
             else
             {
@@ -107,39 +130,11 @@ namespace Assets.Code.Controllers
 			}
 		}
 
-
-        public void AddBuildingButtonClick()
-        {
-            var building = new Building
-            {
-                BuildingType = BuildingType.Derrick,
-                HeightInTiles = 2,
-                WidthInTiles = 3,
-            };
-            AddBuilding(building);
-        }
-
-        public void AddBuildingButtonClick2()
-        {
-            var building = new Building
-            {
-                BuildingType = BuildingType.Spaceport,
-                HeightInTiles = 4,
-                WidthInTiles = 4,
-            };
-            AddBuilding(building);
-        }
-
-        public void AddBuildingButtonClick3()
-        {
-            var building = new Building
-            {
-                BuildingType = BuildingType.Residence,
-                HeightInTiles = 2,
-                WidthInTiles = 2,
-            };
-            AddBuilding(building);
-        }
+		public void AddBuildingButtonClick(GameObject sender)
+		{
+			var building = sender.GetComponent<BuildingBehaviour>().Building;
+			AddBuilding(building.Clone());
+		}
 
         private void AddBuilding(Building building)
         {
