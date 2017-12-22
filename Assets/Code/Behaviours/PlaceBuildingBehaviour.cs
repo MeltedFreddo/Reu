@@ -44,6 +44,7 @@ namespace Assets.Code.Behaviours
 					building.X = roundedMouselocation.x;
 					building.Y = roundedMouselocation.y;
 					App.Instance.CurrentPlanet.Colony.Buildings.Add(building);
+					App.Instance.GameState.Money -= building.Cost;
 					//Debug.Log(App.Instance.CurrentPlanet.Colony.Buildings.Count);
 				}
                 

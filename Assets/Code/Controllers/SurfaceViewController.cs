@@ -133,7 +133,9 @@ namespace Assets.Code.Controllers
 		public void AddBuildingButtonClick(GameObject sender)
 		{
 			var building = sender.GetComponent<BuildingBehaviour>().Building;
-			AddBuilding(building.Clone());
+			//don't proceed unless there is cash enough to add the building
+			if (App.Instance.GameState.Money > building.Cost)
+				AddBuilding(building.Clone());
 		}
 
         private void AddBuilding(Building building)

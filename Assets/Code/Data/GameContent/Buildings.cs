@@ -12,7 +12,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Administration,
-                    Cost = 10,
+                    Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 4,
@@ -27,7 +27,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Derrick,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 2,
@@ -42,7 +42,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Farm,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 2,
@@ -57,7 +57,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Hospital,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 4,
@@ -72,7 +72,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Mine,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 3,
@@ -87,7 +87,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.MiningStation,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 4,
@@ -102,7 +102,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Observatory,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 3,
@@ -117,7 +117,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Park,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 2,
@@ -132,7 +132,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.PowerPlant,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 4,
@@ -147,7 +147,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Residence,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 2,
@@ -162,7 +162,7 @@ namespace Assets.Code.Data.GameContent
                 return new Building
                 {
                     BuildingType = BuildingType.Spaceport,
-                    Cost = 10,
+					Cost = 10000,
                     IsActive = true,
                     PowerConsumption = 1,
                     HeightInTiles = 4,
