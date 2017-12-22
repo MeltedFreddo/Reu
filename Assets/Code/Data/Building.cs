@@ -36,6 +36,15 @@
 				WidthInTiles = building.WidthInTiles
 			};
 		}
+
+		public static Building GetInstance(this Building building, bool isActive, float x, float y)
+		{
+			var result = building.Clone();
+			result.IsActive = isActive;
+			result.X = x;
+			result.Y = y;
+			return result;
+		}
 	}
 }
 

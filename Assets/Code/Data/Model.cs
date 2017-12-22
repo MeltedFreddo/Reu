@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Code.Data.GameContent;
 using Assets.Code.Data.Lists;
 
 namespace Assets.Code.Data
@@ -13,16 +14,20 @@ namespace Assets.Code.Data
 		{
 			Planets = new List<Planet> {
 				new Planet {SpriteName = PlanetSprites.EarthPlanet, Size = 0.1f, Colony = new Colony {
-						Buildings = new List<Building> {
-							new Building { BuildingType = BuildingType.Residence, IsActive = true, PowerConsumption = 1, X = 0, Y = 0, HeightInTiles = 2, WidthInTiles = 2 },
-						    new Building { BuildingType = BuildingType.PowerPlant, IsActive = true, PowerConsumption = 1, X = 1, Y = 1, HeightInTiles = 4, WidthInTiles = 4 },
-							new Building { BuildingType = BuildingType.Derrick, IsActive = true, PowerConsumption = 1, X = -1, Y = -1, HeightInTiles = 2, WidthInTiles = 3 },
-                            new Building { BuildingType = BuildingType.Administration, IsActive = true, PowerConsumption = 1, X = 1, Y = -1, HeightInTiles = 4, WidthInTiles = 4 },
-						    new Building { BuildingType = BuildingType.Derrick, IsActive = true, PowerConsumption = 1, X = -1, Y = -2, HeightInTiles = 2, WidthInTiles = 3 },
-						    new Building { BuildingType = BuildingType.Farm, IsActive = true, PowerConsumption = 1, X = -1, Y = 0, HeightInTiles = 2, WidthInTiles = 2 },
-						    new Building { BuildingType = BuildingType.Hospital, IsActive = true, PowerConsumption = 1, X = 0.5f, Y = -3, HeightInTiles = 4, WidthInTiles = 4 },
-						    new Building { BuildingType = BuildingType.Spaceport, IsActive = true, PowerConsumption = 1, X = -4, Y = 1, HeightInTiles = 4, WidthInTiles = 4 },
-						    new Building { BuildingType = BuildingType.Observatory, IsActive = true, PowerConsumption = 1, X = -1, Y = 3, HeightInTiles = 3, WidthInTiles = 3 },
+						Buildings = new List<Building>
+						{
+							Buildings.Residence.GetInstance(true, 0, 0),
+							Buildings.PowerPlant.GetInstance(true, 1, 1),
+							Buildings.Derrick.GetInstance(true, -1, -1),
+							Buildings.Administration.GetInstance(true, 1, -1),
+							Buildings.Derrick.GetInstance(true, -1, -2),
+							Buildings.Farm.GetInstance(true, -1, 0),
+							Buildings.Hospital.GetInstance(true, 0.5f, -3),
+							Buildings.Spaceport.GetInstance(true, -4, 1),
+							Buildings.Observatory.GetInstance(true, -1, -3),
+							Buildings.Mine.GetInstance(true, 6, 0),
+							Buildings.Mine.GetInstance(true, 6, 1),
+							Buildings.Mine.GetInstance(true, 6, 2),
                         }
 					}
 				},
@@ -31,8 +36,7 @@ namespace Assets.Code.Data
 				new Planet { SpriteName = PlanetSprites.WaterPlanet, Size = 0.09f },
 				new Planet {SpriteName = PlanetSprites.DarkPlanet, Size = 0.18f, Colony = new Colony {
 						Buildings = new List<Building> {
-							new Building { BuildingType = BuildingType.Residence, IsActive = true, PowerConsumption = 1, X = 0, Y = 0 },
-
+							Buildings.MiningStation.GetInstance(true, 0, 0)
 						}
 					}
 				},
