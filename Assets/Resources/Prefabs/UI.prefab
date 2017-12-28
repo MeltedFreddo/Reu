@@ -395,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8726b2465a49c4784a801b8ae0639e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AppPrefab: {fileID: 0}
 --- !u!114 &114161711488620800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -737,6 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8726b2465a49c4784a801b8ae0639e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AppPrefab: {fileID: 0}
 --- !u!114 &114497374763842020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -800,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8726b2465a49c4784a801b8ae0639e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AppPrefab: {fileID: 0}
 --- !u!114 &114617423236020472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -910,6 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8726b2465a49c4784a801b8ae0639e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AppPrefab: {fileID: 0}
 --- !u!114 &114846783805260862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -921,6 +925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8726b2465a49c4784a801b8ae0639e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AppPrefab: {fileID: 114644234958758276, guid: d645fa9d1f3b8394eae996d5c42f0826,
+    type: 2}
 --- !u!114 &114848183248119370
 MonoBehaviour:
   m_ObjectHideFlags: 1

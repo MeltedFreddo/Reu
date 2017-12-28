@@ -26,8 +26,8 @@ namespace Assets.Code.Data
 							Buildings.Spaceport.GetInstance(true, -4, 1),
 							Buildings.Observatory.GetInstance(true, -1, -3),
 							Buildings.Mine.GetInstance(true, 6, 0),
-							Buildings.Mine.GetInstance(true, 6, 1),
-							Buildings.Mine.GetInstance(true, 6, 2),
+							Buildings.Mine.GetInstance(true, 6, 1.5f),
+							Buildings.Mine.GetInstance(true, 6, 3),
                         }
 					}
 				},
