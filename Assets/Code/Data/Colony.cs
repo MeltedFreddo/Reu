@@ -11,6 +11,14 @@ namespace Assets.Code.Data
 
 		public ICollection<Building> Buildings { get; set; }
 
+		public bool IsMiningColony
+		{
+			get
+			{
+				return Population == 0;
+			}
+		}
+
 		public long Population { get; set; }
 
 		public long HappinessInPercent { get; set; }
@@ -29,7 +37,6 @@ namespace Assets.Code.Data
 		{
 			Buildings = new List<Building>();
 
-			Population = 10000;
 			HappinessInPercent = 80;
 			TaxRateInPercent = 5;
 		}

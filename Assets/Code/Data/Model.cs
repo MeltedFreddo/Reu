@@ -14,6 +14,7 @@ namespace Assets.Code.Data
 		{
 			Planets = new List<Planet> {
 				new Planet {SpriteName = PlanetSprites.EarthPlanet, Size = 0.1f, Colony = new Colony {
+						Population = 10000,
 						Buildings = new List<Building>
 						{
 							Buildings.Residence.GetInstance(true, 0, 0),
