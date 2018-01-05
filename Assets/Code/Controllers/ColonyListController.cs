@@ -1,7 +1,10 @@
 ﻿using Assets.Code.BaseClasses;
+using Assets.Code.Behaviours;
+using Assets.Code.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 namespace Assets.Code.Controllers
@@ -14,67 +17,102 @@ namespace Assets.Code.Controllers
 		public GameObject MiningStationsHeading;
 		public GameObject MiningStationRow;
 
+		public List<GameObject> PlanetPrefabs;
+
 		// Use this for initialization
 		void Start()
 		{
 
 			var colonyListContent = GameObject.Find("ColonyListContent");
 
-			var colonies = App.Instance.Model.Planets.Where(x => x.Colony != null).Select(x => x.Colony);
+			var planets = App.Instance.Model.Planets.Where(x => x.Colony != null);
 
-			Debug.Log("starting colony list");
+			Debug.Log(colonyListContent.GetComponent<RectTransform>().sizeDelta);
 
-			if (colonies.Any())
+			var contentPanelMinHeight = 515;
+			var currentGridYPosition = new Vector3(0, -30, 0);
+
+			if (planets.Any())
 			{
-				var currentGridYPosition = new Vector3(0, -30, 0);
+				
 
-				if (colonies.Any(x => !x.IsMiningColony))
+				if (planets.Any(x => !x.Colony.IsMiningColony))
 				{
-					Debug.Log("printing colony header");
 					var coloniesHeading = Instantiate(ColoniesHeading);
-					coloniesHeading.transform.SetParent(colonyListContent.transform, false);
-					//coloniesHeading.transform.localScale = new Vector3(1, 1, 1);
-					coloniesHeading.transform.position = currentGridYPosition;
+					var rowTransform = coloniesHeading.GetComponent<RectTransform>();
+					rowTransform.SetParent(colonyListContent.transform);
+					rowTransform.localScale = new Vector3(1, 1, 1);
+					rowTransform.localPosition = currentGridYPosition;
+					rowTransform.offsetMax = new Vector2(0, rowTransform.offsetMax.y);
 
 					currentGridYPosition = currentGridYPosition + new Vector3(0, -90, 0);
 				}
 
 				//normal colony grid
-				foreach (var colony in colonies.Where(x => !x.IsMiningColony))
+				foreach (var planet in planets.Where(x => !x.Colony.IsMiningColony))
 				{
-					Debug.Log("printing a colony");
+					var colony = planet.Colony;
 					var colonyRow = Instantiate(ColonyRow);
-					colonyRow.transform.SetParent(colonyListContent.transform, false);
-					//colonyRow.transform.localScale = new Vector3(1, 1, 1);
-					//colonyRow.transform.position = currentGridYPosition;
+					var rowTransform = colonyRow.GetComponent<RectTransform>();
+					rowTransform.SetParent(colonyListContent.transform);
+					rowTransform.localScale = new Vector3(1, 1, 1);
+					rowTransform.localPosition = currentGridYPosition;
+					rowTransform.offsetMax = new Vector2(0, rowTransform.offsetMax.y);
+
+					var colonyListItemBehaviour = colonyRow.AddComponent<ColonyListItemBehaviour>();
+					colonyListItemBehaviour.Colony = colony;
+
+					SetPlanetNameAndImage(planet, rowTransform);
 
 					currentGridYPosition = currentGridYPosition + new Vector3(0, -100, 0);
+
+
 				}	
 
-				if (colonies.Any(x => x.IsMiningColony))
+				if (planets.Any(x => x.Colony.IsMiningColony))
 				{
-					Debug.Log("printing mining station header");
 					var miningStationsHeading = Instantiate(MiningStationsHeading);
-					miningStationsHeading.transform.SetParent(colonyListContent.transform, false);
-					//miningStationsHeading.transform.localScale = new Vector3(1, 1, 1);
-					miningStationsHeading.transform.position = currentGridYPosition;
+					var rowTransform = miningStationsHeading.GetComponent<RectTransform>();
+					rowTransform.SetParent(colonyListContent.transform);
+					rowTransform.localScale = new Vector3(1, 1, 1);
+					rowTransform.localPosition = currentGridYPosition;
+					rowTransform.offsetMax = new Vector2(0, rowTransform.offsetMax.y);
 
 					currentGridYPosition = currentGridYPosition + new Vector3(0, -90, 0);
 				}
 
 				//mining colony grid
-				foreach (var colony in colonies.Where(x => x.IsMiningColony))
+				foreach (var planet in planets.Where(x => x.Colony.IsMiningColony))
 				{
-					Debug.Log("printing a mining station");
 					var miningStationRow = Instantiate(MiningStationRow);
-					miningStationRow.transform.SetParent(colonyListContent.transform, false);
-					//miningStationRow.transform.localScale = new Vector3(1, 1, 1);
-					miningStationRow.transform.position = currentGridYPosition;
+					var rowTransform = miningStationRow.GetComponent<RectTransform>();
+					rowTransform.SetParent(colonyListContent.transform);
+					rowTransform.localScale = new Vector3(1, 1, 1);
+					rowTransform.localPosition = currentGridYPosition;
+					rowTransform.offsetMax = new Vector2(0, rowTransform.offsetMax.y);
+
+					SetPlanetNameAndImage(planet, rowTransform);
 
 					currentGridYPosition = currentGridYPosition + new Vector3(0, -100, 0);
 				}	
 			}
+
+			var contentMinRequiredHeight = Mathf.Abs(currentGridYPosition.y) - 30;
+			Debug.Log(contentMinRequiredHeight);
+
+			colonyListContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, Mathf.Max(contentPanelMinHeight, contentMinRequiredHeight));
 		}
+
+		private void SetPlanetNameAndImage(Planet planet, Transform rowTransform)
+		{
+			var sourcePlanetImage = PlanetPrefabs.Single(x => x.name == planet.SpriteName);
+			var planetImage = rowTransform.Find("PlanetImage").GetComponent<Image>();
+			planetImage.sprite = sourcePlanetImage.GetComponent<SpriteRenderer>().sprite;
+
+			var planetName = rowTransform.Find("PlanetName");
+			planetName.GetComponent<Text>().text = planet.PlanetName;
+		}
+
 
 		// Update is called once per frame
 		void Update()

@@ -36,7 +36,7 @@ namespace Assets.Code.Controllers
 			foreach (var building in Buildings.GetAllBuildings())
 			{
 				var button = Instantiate(AddBuildingButtonPrefab);
-				button.transform.parent = ui.transform;
+				button.transform.SetParent(ui.transform);
 				button.transform.localScale = new Vector3(1, 1, 1);
 				button.transform.localPosition = buttonPosition;
 				var buildingBehaviour = button.AddComponent<BuildingBehaviour>();
@@ -116,7 +116,7 @@ namespace Assets.Code.Controllers
 				var selectedOutlineGameObject = Instantiate((GameObject)Resources.Load("Prefabs/Buildings/SelectedOutline"), buildingGameObject.transform.position, Quaternion.identity);
 				selectedOutlineGameObject.name = "SelectedOutline";
 				selectedOutlineGameObject.tag = "SelectedOutline";
-				selectedOutlineGameObject.transform.parent = buildingGameObject.transform;
+				selectedOutlineGameObject.transform.SetParent(buildingGameObject.transform);
 				var spriteRenderer = selectedOutlineGameObject.GetComponent<SpriteRenderer>();
 				spriteRenderer.sortingOrder = 5;
 				var building = buildingGameObject.GetComponent<BuildingBehaviour>().Building;
@@ -161,7 +161,7 @@ namespace Assets.Code.Controllers
 			var spriteRenderer = tileOutline.GetComponent<SpriteRenderer>();
 			spriteRenderer.sortingOrder = 3;
 			spriteRenderer.size = new Vector2(building.WidthInTiles, building.HeightInTiles);
-			tileOutline.transform.parent = buildingGameObject.transform;
+			tileOutline.transform.SetParent(buildingGameObject.transform);
 
         }
     }

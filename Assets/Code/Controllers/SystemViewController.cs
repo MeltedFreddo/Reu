@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Code.BaseClasses;
+using Assets.Code.Data.Lists;
 using Assets.Code.EventHandlers;
 using UnityEngine;
 
@@ -37,7 +38,7 @@ namespace Assets.Code.Controllers
 				var planetPrefab = PlanetPrefabs.Single(x => x.name == thisPlanet.SpriteName);
 				var planetGameObject = Instantiate(planetPrefab, pos, theStar.transform.rotation);
 				var collider = planetGameObject.AddComponent<SphereCollider>();
-				var planetBehaviourScript = planetGameObject.GetComponent<PlanetBehaviourScript>();
+				var planetBehaviourScript = planetGameObject.GetComponent<PlanetBehaviour>();
 				planetBehaviourScript.Planet = thisPlanet;
 
                 planets.Add(planetGameObject);
@@ -45,7 +46,7 @@ namespace Assets.Code.Controllers
 				if (thisPlanet.Colony != null)
 				{
 					var icon = Instantiate(HasColonyFlagPrefab, pos, theStar.transform.rotation);
-					icon.transform.parent = planetGameObject.transform;
+					icon.transform.SetParent(planetGameObject.transform);
 
 					var thisPlanetScale = planetGameObject.transform.localScale.x;
 					var iconCollider = icon.AddComponent<SphereCollider>();
@@ -59,11 +60,26 @@ namespace Assets.Code.Controllers
 
 		// Update is called once per frame
 		void Update()
-		{                
+		{
+			if (Input.GetMouseButtonUp(0))
+			{		
+				RaycastHit hitInfo = new RaycastHit();
+				bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+				if (hit) // && hitInfo.transform.gameObject == gameObject)
+				{
+					Debug.Log("Hit " + hitInfo.transform.gameObject.name);
+
+					var planet = hitInfo.transform.gameObject.GetComponent<PlanetBehaviour>().Planet;
+					App.Instance.CurrentPlanet = planet;
+					App.Instance.LoadScene(SceneNames.SurfaceView);
+
+				}
+			}
+
 			//orbit planets around star
 			foreach (var planet in planets)
 			{
-				var planetBehaviourScript = planet.GetComponent<PlanetBehaviourScript>();
+				var planetBehaviourScript = planet.GetComponent<PlanetBehaviour>();
 				var planetPosition = planet.transform.position;
 				var distanceFromSun = (theStar.transform.position - planetPosition).magnitude;            
 				var orbitSpeed = 50 / distanceFromSun;

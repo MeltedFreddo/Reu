@@ -45,6 +45,11 @@ namespace Assets.Code.Controllers
 			App.Instance.LoadScene(SceneNames.SystemView);
 		}
 
+		public void ColonyListButtonClick()
+		{
+			App.Instance.LoadScene(SceneNames.ColonyList);
+		}
+
 		public void PauseButtonClick()
 		{
 			if ((int)Time.timeScale != GameSpeeds.Paused)

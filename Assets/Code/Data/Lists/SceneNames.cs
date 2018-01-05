@@ -5,6 +5,7 @@
 		public const string MainMenu = "MainMenu";
 		public const string SystemView = "SystemView";
 		public const string SurfaceView = "SurfaceView";
+		public const string ColonyList = "ColonyList";
 	}
 
 }
